@@ -1,0 +1,33 @@
+<nav class="navbar navbar-dark navbar-expand-lg bg-secondary">
+    <div class="container-fluid">
+        <span class="navbar-brand" th:text="${title}">navbar</span>
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle Navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <nav class="navbar-nav" sec:authorize="isAuthenticated()">
+                <a href="#" th:href="@{/home}" th:classappend="${title}=='Home' ? 'active'" class="nav-link">Home</a>
+                <a href="#" th:href="@{/balance}" th:classappend="${title}=='Balance' ? 'active'" class="nav-link">Balance</a>
+                <a href="#" th:href="@{/transfer}" th:classappend="${title}=='Transfer' ? 'active'" class="nav-link">Transfer</a>
+                <a href="#" th:href="@{/history}" th:classappend="${title}=='History' ? 'active'" class="nav-link">History</a>
+                <a href="#" th:href="@{/profile}" th:classappend="${title}=='Profile' ? 'active'" class="nav-link">Profile</a>
+            </nav>
+            <nav class="navbar-nav ms-auto" sec:authorize="isAuthenticated()">
+                <form action="" th:action="@{/logout}" method="post">
+                    <button class="btn btn-link nav-link">Logout</button>
+                </form>
+            </nav>
+            <nav class="navbar-nav ms-auto" sec:authorize="isAnonymous()">
+                <a href="#" th:href="@{/auth/login}" th:classappend="${title}=='Login' ? 'active'" class="nav-link">Login</a>
+                <a href="#" th:href="@{/auth/register}" th:classappend="${title}=='Register' ? 'active'" class="nav-link">Register</a>
+            </nav>
+        </div>
+    </div>
+</nav>
